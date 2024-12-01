@@ -1,0 +1,5 @@
+package com.WeddingPlanner.ClientService.controllers;
+
+public class ClientController {
+
+}

@@ -1,0 +1,20 @@
+package com.wedding.event.repositories;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.wedding.event.entities.Event;
+
+public interface EventRepository extends JpaRepository<Event, Integer> {
+	
+	@Query(value = "SELECT * FROM Clients c WHERE " +
+			"(:weddingDate IS NULL OR c.wedding_date = :weddingDate) AND " +
+			"(:minBudget IS NULL OR c.budget >= :minBudget) AND " +
+			"(:maxBudget IS NULL OR c.budget <= :maxBudget)",
+			nativeQuery = true)
+	List<Event> findByBudgetRangeOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget);
+
+}

@@ -1,0 +1,20 @@
+package com.wedding.client.controllers;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.wedding.client.dtos.ClientDto;
+
+@RestController
+@RequestMapping("/clients")
+public class ClientController {
+	
+	
+	public ResponseEntity<ClientDto> register(@RequestBody ClientDto clientDto)
+	{
+		return null;
+		
+	}
+}

@@ -1,0 +1,5 @@
+package com.wedding.vendor.dtos;
+
+public class VendorAvailabilityDto {
+
+}

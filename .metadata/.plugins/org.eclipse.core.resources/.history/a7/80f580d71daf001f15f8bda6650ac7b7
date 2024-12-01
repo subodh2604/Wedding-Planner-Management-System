@@ -1,0 +1,9 @@
+package com.wedding.client.services;
+
+import org.springframework.http.ResponseEntity;
+
+import com.wedding.client.dtos.ClientDto;
+
+public interface ClientService {
+	public ResponseEntity<ClientDto> register(ClientDto clientDto);
+}

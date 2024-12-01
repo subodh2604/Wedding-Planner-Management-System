@@ -1,0 +1,5 @@
+package com.wedding.client.serviceImpls;
+
+public class ClientServiceImpl {
+
+}

@@ -1,0 +1,5 @@
+package com.wedding.client.services;
+
+public interface ClientService {
+
+}

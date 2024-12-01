@@ -1,0 +1,59 @@
+package com.wedding.vendor.serviceImpls;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wedding.vendor.dtos.VendorDto;
+import com.wedding.vendor.entities.Vendor;
+import com.wedding.vendor.repositories.VendorRepository;
+import com.wedding.vendor.services.VendorService;
+import com.wedding.vendor.services.VendorService;
+
+@Service
+public class VendorServiceImpl implements VendorService{
+	
+	@Autowired
+	private VendorRepository clientRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Override
+	public VendorDto register(VendorDto clientDto) {
+		
+		Vendor client=modelMapper.map(clientDto, Vendor.class);
+		
+		Vendor savedVendor=clientRepository.save(client);
+		
+		VendorDto saveVendorDto=modelMapper.map(savedVendor, VendorDto.class);
+		
+		return saveVendorDto;
+	}
+
+	@Override
+	public VendorDto findByVendorId(int clientId) {
+		Vendor client=clientRepository.findById(clientId).orElseThrow(()->new RuntimeException("Vendor not found!!!!"));
+		
+		VendorDto saveVendorDto=modelMapper.map(client, VendorDto.class);
+		
+		return saveVendorDto;
+	}
+
+	@Override
+	public List<VendorDto> findByBudgetOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget) {
+		List<Vendor> filteredVendors=clientRepository.findByBudgetRangeOrDate(weddingDate,minBudget,maxBudget);
+		
+		List<VendorDto> filteredVendorDtos=new ArrayList<>();
+		
+		filteredVendorDtos=filteredVendors.stream().map((x)->modelMapper.map(x,VendorDto.class)).collect(Collectors.toList());
+		
+		return filteredVendorDtos;
+	}
+
+}

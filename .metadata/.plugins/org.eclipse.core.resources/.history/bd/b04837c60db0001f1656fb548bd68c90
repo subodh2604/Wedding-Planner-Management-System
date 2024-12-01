@@ -1,0 +1,16 @@
+package com.wedding.payment.services;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.wedding.payment.dtos.PaymentDto;
+
+public interface ClientService {
+	public PaymentDto register(PaymentDto paymentDto);
+
+	public PaymentDto findByPaymentId(int clientId);
+	
+	public PaymentDto findByStatus(int clientId);
+
+
+}

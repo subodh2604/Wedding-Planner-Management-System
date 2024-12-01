@@ -1,0 +1,5 @@
+package com.wedding.client.dtos;
+
+public class ClientDto {
+
+}

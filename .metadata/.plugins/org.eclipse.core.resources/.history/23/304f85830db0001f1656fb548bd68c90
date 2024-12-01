@@ -1,0 +1,14 @@
+package com.wedding.payment.services;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.wedding.payment.dtos.PaymentDto;
+
+public interface ClientService {
+	public PaymentDto register(PaymentDto clientDto);
+
+	public PaymentDto findByClientId(int clientId);
+
+	public List<PaymentDto> findByBudgetOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget);
+}

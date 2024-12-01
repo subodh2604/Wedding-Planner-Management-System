@@ -1,0 +1,20 @@
+package com.wedding.client.serviceImpls;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.wedding.client.dtos.ClientDto;
+import com.wedding.client.repositories.ClientRepository;
+import com.wedding.client.services.ClientService;
+
+public class ClientServiceImpl implements ClientService{
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Override
+	public ClientDto register(ClientDto clientDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.wedding.event.services;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.wedding.event.dtos.EventDto;
+
+public interface EventService {
+	public EventDto register(EventDto EventDto);
+
+	public EventDto findByEventId(int clientId);
+
+	public List<EventDto> findByBudgetOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget);
+}

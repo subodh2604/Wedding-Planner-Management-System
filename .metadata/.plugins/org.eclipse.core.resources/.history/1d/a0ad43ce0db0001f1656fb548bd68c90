@@ -1,0 +1,13 @@
+package com.wedding.payment.services;
+
+import com.wedding.payment.dtos.PaymentDto;
+
+public interface ClientService {
+	public PaymentDto register(PaymentDto paymentDto);
+
+	public PaymentDto findByPaymentId(int paymentId);
+	
+	public PaymentDto findByStatus(String status);
+
+
+}

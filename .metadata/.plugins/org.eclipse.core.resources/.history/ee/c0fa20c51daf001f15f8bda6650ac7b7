@@ -1,0 +1,7 @@
+package com.wedding.client.services;
+
+import com.wedding.client.dtos.ClientDto;
+
+public interface ClientService {
+	public ClientDto register(ClientDto clientDto);
+}

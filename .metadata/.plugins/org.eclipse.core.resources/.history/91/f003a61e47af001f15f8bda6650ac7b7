@@ -1,0 +1,42 @@
+package com.wedding.client.serviceImpls;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wedding.client.dtos.ClientDto;
+import com.wedding.client.entities.Client;
+import com.wedding.client.repositories.ClientRepository;
+import com.wedding.client.services.ClientService;
+
+@Service
+public class ClientServiceImpl implements ClientService{
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Override
+	public ClientDto register(ClientDto clientDto) {
+		
+		Client client=modelMapper.map(clientDto, Client.class);
+		
+		Client savedClient=clientRepository.save(client);
+		
+		ClientDto saveClientDto=modelMapper.map(savedClient, ClientDto.class);
+		
+		return saveClientDto;
+	}
+
+	@Override
+	public ClientDto findByClientId(int clientId) {
+		Client client=clientRepository.findById(clientId).orElseThrow(()->new RuntimeException("Client not found!!!!"));
+		
+		ClientDto saveClientDto=modelMapper.map(savedClient, ClientDto.class);
+		
+		return null;
+	}
+
+}

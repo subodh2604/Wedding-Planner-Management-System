@@ -1,0 +1,6 @@
+package com.wedding.client.controllers;
+
+
+public class ClientController {
+
+}

@@ -1,0 +1,14 @@
+package com.wedding.booking.services;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.wedding.booking.dtos.BookingDto;
+
+public interface BookingService {
+	public BookingDto register(BookingDto clientDto);
+
+	public BookingDto findByClientId(int clientId);
+
+	public List<BookingDto> findByBudgetOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget);
+}

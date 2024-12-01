@@ -1,0 +1,17 @@
+spring.application.name=Booking-Service
+
+#db config
+spring.datasource.url=jdbc:mysql://localhost:3306/weddingPlannerBookingDb
+spring.datasource.username=root
+spring.datasource.password=subodh1234
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#jpa
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+server.port=8083
+
+
+#config server
+spring.config.import=configserver:http://localhost:8086

@@ -1,0 +1,58 @@
+package com.wedding.payment.serviceImpls;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wedding.payment.dtos.PaymentDto;
+import com.wedding.payment.entities.Payment;
+import com.wedding.payment.repositories.PaymentRepository;
+import com.wedding.payment.services.PaymentService;
+
+@Service
+public class PaymentServiceImpl implements PaymentService{
+	
+	@Autowired
+	private PaymentRepository paymentRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
+	@Override
+	public PaymentDto register(PaymentDto clientDto) {
+		
+		Payment client=modelMapper.map(clientDto, Payment.class);
+		
+		Payment savedPayment=paymentRepository.save(client);
+		
+		PaymentDto savePaymentDto=modelMapper.map(savedPayment, PaymentDto.class);
+		
+		return savePaymentDto;
+	}
+
+	@Override
+	public PaymentDto findByPaymentId(int clientId) {
+		Payment client=paymentRepository.findById(clientId).orElseThrow(()->new RuntimeException("Payment not found!!!!"));
+		
+		PaymentDto savePaymentDto=modelMapper.map(client, PaymentDto.class);
+		
+		return savePaymentDto;
+	}
+
+	@Override
+	public List<PaymentDto> findByBudgetOrDate(LocalDate weddingDate, Double minBudget, Double maxBudget) {
+		List<Payment> filteredPayments=paymentRepository.findByBudgetRangeOrDate(weddingDate,minBudget,maxBudget);
+		
+		List<PaymentDto> filteredPaymentDtos=new ArrayList<>();
+		
+		filteredPaymentDtos=filteredPayments.stream().map((x)->modelMapper.map(x,PaymentDto.class)).collect(Collectors.toList());
+		
+		return filteredPaymentDtos;
+	}
+
+}
